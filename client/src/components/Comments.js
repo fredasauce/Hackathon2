@@ -8,8 +8,8 @@ class Comments extends React.Component {
   state = { comments: [], showForm: false }
 
   componentDidMount() {
-    const { id } = this.props
-    axios.get(`/api/items/${id}/comments`)
+    const { video_id } = this.props
+    axios.get(`/api/videos/${video_id}/comments`)
       .then(res => {
         this.setState({ comments: res.data })
       })
@@ -27,7 +27,7 @@ class Comments extends React.Component {
       return (
         <CommentForm
           add
-          item_id={this.props.id}
+          video_id={this.props.id}
           addComment={this.addComment}
           toggle={this.showForm}
         />
@@ -36,7 +36,7 @@ class Comments extends React.Component {
   }
 
   deleteComment = (c_id) => {
-    axios.delete(`/api/items/${this.props.id}/comments/${c_id}`)
+    axios.delete(`/api/videos/${this.props.id}/comments/${c_id}`)
       .then(res => {
         const comments = this.state.comments.filter(c => {
           if (c.id !== c_id)
@@ -62,17 +62,17 @@ class Comments extends React.Component {
             <Button icon color="red" onClick={() => this.deleteComment(c.id)}>
               <Icon name="trash" />
             </Button>
-            <Link to={{
+            {/* <Link to={{
               pathname: `/comment/${c.id}/edit`,
               state: {
-                item_id: this.props.id,
+                video_id: this.props.id,
               }
             }}
             >
               <Button icon color="blue">
                 <Icon name="edit" />
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </Card.Content>
       </Card>
