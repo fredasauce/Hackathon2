@@ -1,4 +1,5 @@
 class Api::CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_video
   before_action :set_comment, only [ :show, :update, :destroy]
 
@@ -43,6 +44,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body)
+      params.require(:comment).permit(:body, :liked)
     end
 end
