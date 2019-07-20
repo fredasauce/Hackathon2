@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Button, Card, Grid, Image, Icon, Segment } from 'semantic-ui-react';
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
-import Comments from "./Comments";
 import AddVideo from './AddVideo'
 import axios from "axios"
 
@@ -69,16 +68,6 @@ class Videos extends React.Component {
     return (
         <Page>
           <Container>
-            <ButtonStyle>
-              <Link to="/videos/new">
-                <Button color='CAEBF2'>
-                  <Icon name="add" />
-                  Add a Video
-                </Button>
-              </Link>
-            </ButtonStyle>
-
-
            <StyledSeg>
               <StyledLeftDiv>
                 ----BIG VIDEO---/route and action needed/
@@ -105,7 +94,6 @@ class Videos extends React.Component {
             </Grid>
             </StyledSeg>
           </Container>
-        <AddVideo/>
         </Page>
     )
   }

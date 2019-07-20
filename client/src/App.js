@@ -10,6 +10,7 @@ import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
 import Videos from "./components/Videos";
 import Video from "./components/Video";
+import AddVideo from "./components/AddVideo"
 import Comments from "./components/Comments";
 import MyFriends from './components/MyFriends'
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route exact path="/register" component={Register} />
           <Route exact path="/videos" component={Videos} />
           <Route exact path="/videos/:id" component={Video} />
+          <Route exact path="/addvideo" component={AddVideo} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
