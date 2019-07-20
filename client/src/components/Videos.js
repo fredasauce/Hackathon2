@@ -3,7 +3,7 @@ import { Container, Button, Card, Grid, Image, Icon, Segment } from 'semantic-ui
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import Comments from "./Comments";
-
+import AddVideo from './AddVideo'
 import axios from "axios"
 
 class Videos extends React.Component {
@@ -17,8 +17,14 @@ class Videos extends React.Component {
       .catch(err => {
         console.log(err.response)
       })
+  }
 
-     
+  randomVideo=()=>{
+    return(
+      <>
+      {this.state.videos[Math.floor(Math.random(0, this.state.videos.length-1))]}
+      </>
+    )
   }
 
   showVideos = () => {
@@ -35,7 +41,7 @@ class Videos extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              {v.name} This is video name
+              {v.title}
             </Card.Header>
             <Card.Content
               style={{
@@ -99,6 +105,7 @@ class Videos extends React.Component {
             </Grid>
             </StyledSeg>
           </Container>
+        <AddVideo/>
         </Page>
     )
   }
@@ -153,61 +160,3 @@ const ButtonStyle = styled.div`
 `
 
   export default Videos;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Videos = () => {
-//   const {videos, setVideos} = useState([]);
-
-//  const handleSubmit = (e) => {
-//     e.preventDefault()
-//       axios.put(`/api/video/${id}`)
-//         .then(res => setVideos(res.data))
-//     debugger
-
-//   }
-
-//   const handleClick = () => {
-//     debugger
-//   }
-
-//   const Video =()=>{
-//     return(
-//     <Card>
-//       <Card.Header>
-//         {/* {v.title} */}
-//         a
-//       </Card.Header>
-//       <Card.description>
-//         {/* {v.description} */}
-//         b
-//       </Card.description>
-//       <Card.Meta>
-//         {/* {v.comments} */}
-//         c
-//       </Card.Meta>
-//       <Button onClick={handleSubmit} />
-//     </Card>
-//     )
-//   }
-
-//   return(
-//     <>
-//     HALLO
-//     {videos.map((video)=>
-//       <Video key={video.id} />
-//       )}
-//     </>
-//   )
-// }

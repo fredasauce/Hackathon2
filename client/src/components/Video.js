@@ -1,93 +1,86 @@
-// import React from 'react';
-// import axios from 'axios';
-// import { Link, } from 'react-router-dom';
-// import { Button, Container, Image, Icon, } from 'semantic-ui-react';
 
-// class Video extends React.Component {
-//   state = { comments: [] }
+import React from 'react';
+import axios from 'axios';
+import { Link, } from 'react-router-dom';
+import { Container, Button, Card, Grid, Image, Icon, } from 'semantic-ui-react';
+import Comments from "./Comments";
+import styled from "styled-components";
 
-//   componentDidMount() {
-//     const { match: { params: { id, video_id } } } = this.props
-//     axios.get(`/api/videos/${video_id}/items/${id}`)
-//       .then(res => {
-//         this.setState({ video: res.data })
-//       })
-//       .catch(err => {
-//         console.log(err.response)
-//       })
-//   }
+class Video extends React.Component {
+  state = { video: [], comments: [] }
+  
+  
+  componentDidMount() {
+    const { video_id } = this.props
+    axios.get(`/api/videos/${video_id}`)
+      .then(res => {
+        this.setState({ video: res.data })
+      })
+      .catch(err => {
+        console.log(err.response)
+      })
+  }
 
-//   handleDelete = () => {
-//     const { id, department_id } = this.props.match.params;
-//     axios.delete(`/api/departments/${department_id}/items/${id}`)
-//       .then(res => {
-//         this.props.history.push(`/departments/${department_id}`)
-//       })
-//   }
+  handleDelete = () => {
+    const { id, video_id } = this.props.match.params;
+    axios.delete(`/api/video/${video_id}`)
+      .then(res => {
+        this.props.history.push(`/video/${video_id}`)
+      })
+  }
 
-//   showVideos = () => {
-//     return this.state.videos.map(v => (
-//       <Link to={`/videos/${v.id}`}>
-//         <div style={{ padding: '20px', border: '2px solid black' }}>
-//           <CardStyles>
-//             <Card.Header
-//               style={{
-//                 fontSize: "20px",
-//                 height: '40px',
-//                 display: 'flex',
-//                 justifyContent: 'center',
-//                 alignItems: 'center',
-//               }}>
-//               {v.name} This is video name
-//             </Card.Header>
-//             <Card.Content
-//               style={{
-//                 display: 'flex',
-//                 justifyContent: 'center',
-//                 alignItems: 'center',
-//                 }}>
-//               <Image
-//                 style={{
-//                   height: '120px',
-//                   width: '160px',
-//                 }}
-//                 src={"https://loremflickr.com/400/400/commerce?" + Math.random()}
-//                 alt="Video" />
-//             </Card.Content>
-           
-//           </CardStyles>
-//           <Comments id={v.id} />
+  showVideos = () => {
+    return this.state.videos.id(v => (
+      <Card>
+        <Card.Header>
+          {v.title}
+        </Card.Header>
+        <Card.description>
+          {v.description}
+        </Card.description>
+        <Card.Meta>
+          {v.duration}
+        </Card.Meta>
+      </Card>
+    ))
+  }
 
-//         </div>
-//       </Link>
-//     ))
-//   }
+  render() {
+    return (
+        <Page>
+          <Container>
+            <ButtonStyle>
+              <Link to="/videos/new">
+                <Button color='CAEBF2'>
+                  <Icon name="add" />
+                  Add a Video
+                </Button>
+              </Link>
+            </ButtonStyle>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column relaxed columns={4}>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+          <div>
+            {/* <Comments id={v.id} /> */}
+          </div>
+        </Page>
+    )
+  }
+}
 
-//   render() {
-//     return (
-//         <Page>
-//           <Container>
-//             <ButtonStyle>
-//               <Link to="/videos/new">
-//                 <Button color='CAEBF2'>
-//                   <Icon name="add" />
-//                   Add a Video
-//                 </Button>
-//               </Link>
-//             </ButtonStyle>
-//             <Grid>
-//               <Grid.Row>
-//                 <Grid.Column relaxed columns={4}>
-//                   <CardGroup>
-//                     {this.showVideos()}
-//                   </CardGroup>
-//                 </Grid.Column>
-//               </Grid.Row>
-//             </Grid>
-//           </Container>
-//         </Page>
-//     )
-//   }
-// }
+const Page = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`
+const ButtonStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+`
 
-// export default Video
+export default Video
