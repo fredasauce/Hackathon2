@@ -48,7 +48,8 @@ class Comments extends React.Component {
 
 
   displayComments = () => {
-    const { id } = this.props.id
+    // debugger
+    // const { id } = this.props.id
     return this.state.comments.map(c => (
       <Card fluid>
         <Card.Content>
@@ -83,14 +84,14 @@ class Comments extends React.Component {
     return (
       <div style={{ marginTop: '30px' }}>
         <hr />
-        <h1>C O M M E N T</h1>
+        <h1>C O M M E N T S</h1>
         <Button color='teal' onClick={this.showForm}>
           <Icon name='comment alternate outline' />
           Comment
         </Button>
         {this.renderForm()}
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '30px' }}>
-          <Card.Group videosPerRow={3}>
+          <Card.Group videosPerRow={4}>
             {this.displayComments()}
           </Card.Group>
         </div>

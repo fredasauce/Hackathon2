@@ -25,7 +25,7 @@ const App = () => (
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/videos" component={Videos} />
-          <Route exact path="/video" component={Video} />
+          <Route exact path="/videos/:id" component={Video} />
           <Route component={NoMatch} />
         </Switch>
       </Container>

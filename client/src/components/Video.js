@@ -2,72 +2,55 @@
 import React from 'react';
 import axios from 'axios';
 import { Link, } from 'react-router-dom';
-import { Container, Button, Card, Grid, Image, Icon, } from 'semantic-ui-react';
+import { Image, Icon, Segment, Header, Divider, } from 'semantic-ui-react';
 import Comments from "./Comments";
 import styled from "styled-components";
 
 class Video extends React.Component {
-  state = { video: [], comments: [] }
+  state = { video: [], }
   
   
-  componentDidMount() {
-    const { video_id } = this.props
+  componentDidMount(id) {
+    const video_id = this.props.match.params.id
     axios.get(`/api/videos/${video_id}`)
       .then(res => {
         this.setState({ video: res.data })
       })
+
+    // axios.get(`/api/videos/${video_id}/comments`)
+    //   .then ((res) => {
+    //     this.setState({ comments: res.data })
+    //   })
       .catch(err => {
         console.log(err.response)
       })
   }
 
-  handleDelete = () => {
-    const { id, video_id } = this.props.match.params;
-    axios.delete(`/api/video/${video_id}`)
-      .then(res => {
-        this.props.history.push(`/video/${video_id}`)
-      })
-  }
-
-  showVideos = () => {
-    return this.state.videos.id(v => (
-      <Card>
-        <Card.Header>
-          {v.title}
-        </Card.Header>
-        <Card.description>
-          {v.description}
-        </Card.description>
-        <Card.Meta>
-          {v.duration}
-        </Card.Meta>
-      </Card>
-    ))
-  }
+  // handleDelete = () => {
+  //   const { id, video_id } = this.props.match.params;
+  //   axios.delete(`/api/video/${video_id}`)
+  //     .then(res => {
+  //       this.props.history.push(`/video/${video_id}`)
+  //     })
+  // }
 
   render() {
+    const { match: { params: {video_id}}} = this.props
+    const { video } = this.state
     return (
-        <Page>
-          <Container>
-            <ButtonStyle>
-              <Link to="/videos/new">
-                <Button color='CAEBF2'>
-                  <Icon name="add" />
-                  Add a Video
-                </Button>
-              </Link>
-            </ButtonStyle>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column relaxed columns={4}>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-          <div>
-            {/* <Comments id={v.id} /> */}
-          </div>
-        </Page>
+      <>
+        <div>
+          <Image src={"https://loremflickr.com/400/400/products?" + Math.random()} alt="Trailer" />
+          {video.duration}
+        </div>
+        <Segment raised>
+          <Header as="h2" textAlign="left" style={{padding: '15px 0'}}>{video.title}</Header>
+          <Divider />
+          {/* {video.user_id} */}
+          {video.description}
+        </Segment>
+        <Comments id={video_id} />
+      </>
     )
   }
 }
