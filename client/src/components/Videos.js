@@ -17,8 +17,6 @@ class Videos extends React.Component {
       .catch(err => {
         console.log(err.response)
       })
-
-     
   }
 
   randomVideo=()=>{
