@@ -9,7 +9,7 @@ class Videos extends React.Component {
   state = { videos: [] }
 
   componentDidMount() {
-    axios.get("api/videos")
+    axios.get("/api/videos")
       .then(res => {
         this.setState({ videos: res.data })
       })
@@ -18,7 +18,7 @@ class Videos extends React.Component {
       })
   }
 
-  showDepts = () => {
+  showVideos = () => {
     return this.state.videos.map(v => (
       <Link to={`/videos/${v.id}`}>
         <div style={{ padding: '20px', border: '2px solid black' }}>
@@ -55,27 +55,27 @@ class Videos extends React.Component {
 
   render() {
     return (
-      <Page>
-        <Container>
-          <ButtonStyle>
-            <Link to="/videos/new">
-              <Button color='CAEBF2'>
-                <Icon name="add" />
-                Add a Video
-              </Button>
-            </Link>
-          </ButtonStyle>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column relaxed columns={4}>
-                {/* <CardGroup>
-                  {this.showVideos()}
-                </CardGroup> */}
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-      </Page>
+        <Page>
+          <Container>
+            <ButtonStyle>
+              <Link to="/videos/new">
+                <Button color='CAEBF2'>
+                  <Icon name="add" />
+                  Add a Video
+                </Button>
+              </Link>
+            </ButtonStyle>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column relaxed columns={4}>
+                  <CardGroup>
+                    {this.showVideos()}
+                  </CardGroup>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </Page>
     )
   }
 }
