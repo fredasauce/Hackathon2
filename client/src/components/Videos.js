@@ -21,6 +21,14 @@ class Videos extends React.Component {
      
   }
 
+  randomVideo=()=>{
+    return(
+      <>
+      {this.state.videos[Math.floor(Math.random(0, this.state.videos.length-1))]}
+      </>
+    )
+  }
+
   showVideos = () => {
     return this.state.videos.map(v => (
       <Link to={`/videos/${v.id}`}>

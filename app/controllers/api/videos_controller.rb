@@ -6,6 +6,7 @@ class Api::VideosController < ApplicationController
     render json: Video.all
   end
 
+
   def show
   render json: @video
   end
