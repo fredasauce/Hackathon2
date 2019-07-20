@@ -8,6 +8,8 @@ import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
+import Videos from "./components/Videos";
+import Video from "./components/Video";
 import Comments from "./components/Comments";
 
 const App = () => (
@@ -20,6 +22,8 @@ const App = () => (
           <Route exact path="/comments" component={Comments} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/videos" component={Videos} />
+          <Route exact path="/video" component={Video} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
