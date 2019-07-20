@@ -21,7 +21,7 @@
       5.times do
         Comment.create(
           body: Faker::Lorem.paragraph_by_chars(256, false),
-          video_id: vid.id 
+          video_id: vid.id
         )
 
       end

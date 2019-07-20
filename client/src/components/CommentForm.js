@@ -3,7 +3,7 @@ import { Form, } from "semantic-ui-react";
 import axios from "axios";
 
 class CommentForm extends React.Component {
-  state = { body: '', like: null  }
+  state = { body: '' }
 
   componentDidMount() {
       if (this.props.edit) {
@@ -36,7 +36,7 @@ class CommentForm extends React.Component {
   }
 
   render() {
-    const { body, like, } = this.state
+    const { body, } = this.state
     return (
       <div style={{marginLeft: '100px'}}>
         {!this.props.add ? <h1>Edit Comment</h1> : null}

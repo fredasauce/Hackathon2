@@ -44,6 +44,6 @@ class Api::CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:body, :liked)
+      params.require(:comment).permit(:body)
     end
 end
