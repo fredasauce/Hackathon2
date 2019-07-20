@@ -7,7 +7,7 @@ class CommentForm extends React.Component {
 
   componentDidMount() {
       if (this.props.edit) {
-      axios.get(`/api/items/${this.props.location.state.item_id}/comments/${this.props.match.params.id}`)
+      axios.get(`/api/videos/${this.props.location.state.video_id}/comments/${this.props.match.params.id}`)
         .then(res => {
           this.setState({ ...res.data })
         })
@@ -22,14 +22,14 @@ class CommentForm extends React.Component {
     e.preventDefault()
     if (this.props.edit) {
       const { match: { params: { id } } } = this.props
-      const { location: { state: { item_id } } } = this.props
-      axios.put(`/api/items/${item_id}/comments/${id}`, { ...this.state })
+      const { location: { state: { video_id } } } = this.props
+      axios.put(`/api/videos/${video_id}/comments/${id}`, { ...this.state })
         .then(res => {
           this.props.history.goBack()
         })
     } else {
-      const { item_id } = this.props
-      axios.post(`/api/items/${item_id}/comments`, { ...this.state })
+      const { video_id } = this.props
+      axios.post(`/api/videos/${video_id}/comments`, { ...this.state })
         .then(res => this.props.addComment(res.data))
       this.props.toggle()
     }
