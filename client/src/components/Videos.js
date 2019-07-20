@@ -3,7 +3,7 @@ import { Container, Button, Card, Grid, Image, Icon, } from 'semantic-ui-react';
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import Comments from "./Comments";
-
+import AddVideo from './AddVideo'
 import axios from "axios"
 
 class Videos extends React.Component {
@@ -17,8 +17,14 @@ class Videos extends React.Component {
       .catch(err => {
         console.log(err.response)
       })
+  }
 
-     
+  randomVideo=()=>{
+    return(
+      <>
+      {this.state.videos[Math.floor(Math.random(0, this.state.videos.length-1))]}
+      </>
+    )
   }
 
   showVideos = () => {
@@ -81,6 +87,7 @@ class Videos extends React.Component {
               </Grid.Row>
             </Grid>
           </Container>
+        <AddVideo/>
         </Page>
     )
   }
