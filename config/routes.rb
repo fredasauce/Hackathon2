@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :videos do
       resources :comments
     end
+    get 'my_friends', to: 'profiles#my_friends'
   end
 end
