@@ -3,7 +3,7 @@ class Api::VideosController < ApplicationController
   before_action :set_video, only: [:show, :destroy, :update]
   
   def index
-    render json: current_user.videos
+    render json: Video.all
   end
 
   def show
@@ -15,14 +15,16 @@ class Api::VideosController < ApplicationController
     if video.save
     render json: video
     else
-    render json: video.errors, status 422
+    render json: video.errors, status: 422
+    end
   end
 
   def update
-    if @video.update(video_params)
-      render json: @video
-    else
-      render json: @video.errors, status 422
+      if @video.update(video_params)
+        render json: @video
+      else
+        render json: @video.errors, status: 422
+    end
   end
 
   def destroy

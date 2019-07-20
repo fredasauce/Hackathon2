@@ -10,12 +10,18 @@ class Navbar extends React.Component {
     
     if (user) {
       return (
+        <>
+        <Link to='/MyFriends'>
+          <Menu.Item name='Friends List' active={this.props.location.pathname === "MyFriends"}>
+          </Menu.Item>
+        </Link>
         <Menu.Menu position='right'>
           <Menu.Item
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
           />
         </Menu.Menu>
+        </>
       )
     } else {
       return (
@@ -48,6 +54,13 @@ class Navbar extends React.Component {
               name='home'
               id='home'
               active={this.props.location.pathname === '/'}
+            />
+          </Link>
+          <Link to='/videos'>
+            <Menu.Item
+              name='videos'
+              // id='videos'
+              // active={this.props.location.pathname === '/videos'}
             />
           </Link>
             { this.rightNavItems() }
