@@ -42,13 +42,12 @@ class Videos extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center',
                 }}>
-              <Image
-                style={{
-                  height: '120px',
-                  width: '160px',
+                <iframe id="inlineiFrame" title="iFrame" style={{
+                  height: '11em',
+                  width: '17em',
                 }}
-                src={"https://loremflickr.com/400/400/commerce?" + Math.random()}
-                alt="Video" />
+                src={v.trailer}>
+                </iframe>
             </Card.Content>
            
           </CardStyles>
