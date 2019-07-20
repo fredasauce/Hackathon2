@@ -48,7 +48,7 @@ class Comments extends React.Component {
 
 
   displayComments = () => {
-    const { video_id } = this.props.id
+    const { id } = this.props.id
     return this.state.comments.map(c => (
       <Card fluid>
         <Card.Content>
