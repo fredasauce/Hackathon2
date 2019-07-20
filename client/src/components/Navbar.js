@@ -1,7 +1,8 @@
 import React from 'react'
 import { AuthConsumer, } from "../providers/AuthProvider";
-import { Menu, } from 'semantic-ui-react'
+import { Menu, Image, Button, Icon, } from 'semantic-ui-react'
 import { Link, withRouter, } from 'react-router-dom'
+import utoob from "../Images/utoob.png"
 
 class Navbar extends React.Component {
   
@@ -16,6 +17,14 @@ class Navbar extends React.Component {
           </Menu.Item>
         </Link>
         <Menu.Menu position='right'>
+          <Link to='/AddVideo'>
+            <Menu.Item>
+              <Button color='CAEBF2'>
+                <Icon name="add" />
+                Upload Video
+              </Button>
+            </Menu.Item>
+          </Link>
           <Menu.Item
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
@@ -49,6 +58,7 @@ class Navbar extends React.Component {
     return (
       <div>
         <Menu pointing secondary>
+          <Image src={utoob} />
           <Link to='/'>
             <Menu.Item
               name='home'
