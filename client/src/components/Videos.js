@@ -34,7 +34,7 @@ class Videos extends React.Component {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}>
-              {v.name} This is video name
+              {v.title}
             </Card.Header>
             <Card.Content
               style={{
@@ -109,61 +109,3 @@ const ButtonStyle = styled.div`
 `
 
   export default Videos;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const Videos = () => {
-//   const {videos, setVideos} = useState([]);
-
-//  const handleSubmit = (e) => {
-//     e.preventDefault()
-//       axios.put(`/api/video/${id}`)
-//         .then(res => setVideos(res.data))
-//     debugger
-
-//   }
-
-//   const handleClick = () => {
-//     debugger
-//   }
-
-//   const Video =()=>{
-//     return(
-//     <Card>
-//       <Card.Header>
-//         {/* {v.title} */}
-//         a
-//       </Card.Header>
-//       <Card.description>
-//         {/* {v.description} */}
-//         b
-//       </Card.description>
-//       <Card.Meta>
-//         {/* {v.comments} */}
-//         c
-//       </Card.Meta>
-//       <Button onClick={handleSubmit} />
-//     </Card>
-//     )
-//   }
-
-//   return(
-//     <>
-//     HALLO
-//     {videos.map((video)=>
-//       <Video key={video.id} />
-//       )}
-//     </>
-//   )
-// }
