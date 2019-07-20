@@ -42,7 +42,6 @@ class CommentForm extends React.Component {
         {!this.props.add ? <h1>Edit Comment</h1> : null}
         <Form style={{ marginTop: '10px' }} onSubmit={this.handleSubmit}>
           <Form.Group width="equal">
-            />
             <Form.Input
               name="body"
               label="Body"
@@ -52,7 +51,9 @@ class CommentForm extends React.Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Button color='green'>Submit</Form.Button>
+          <Form.Button color='green'>Submit
+          
+          </Form.Button>
         </Form>
       </div>
     )

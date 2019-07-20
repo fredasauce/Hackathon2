@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button, Card, Grid, Image, Icon, } from 'semantic-ui-react';
+import { Container, Button, Card, Grid, Image, Icon, Segment } from 'semantic-ui-react';
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
 import Comments from "./Comments";
@@ -30,11 +30,12 @@ class Videos extends React.Component {
   showVideos = () => {
     return this.state.videos.map(v => (
       <Link to={`/videos/${v.id}`}>
-        <div style={{ padding: '20px', border: '2px solid black' }}>
+
+        <div style={{ padding: '10px', }}>
           <CardStyles>
             <Card.Header
               style={{
-                fontSize: "20px",
+                fontSize: "16px",
                 height: '40px',
                 display: 'flex',
                 justifyContent: 'center',
@@ -50,15 +51,14 @@ class Videos extends React.Component {
                 }}>
               <Image
                 style={{
-                  height: '120px',
-                  width: '160px',
+                  height: '140px',
+                  width: '180px',
                 }}
                 src={"https://loremflickr.com/400/400/commerce?" + Math.random()}
                 alt="Video" />
             </Card.Content>
-           
           </CardStyles>
-          <Comments id={v.id} />
+          {/* <Comments id={v.id} /> */}
 
         </div>
       </Link>
@@ -77,6 +77,23 @@ class Videos extends React.Component {
                 </Button>
               </Link>
             </ButtonStyle>
+
+
+           <StyledSeg>
+              <StyledLeftDiv>
+                ----BIG VIDEO---/route and action needed/
+              </StyledLeftDiv>
+           </StyledSeg>
+
+
+            <StyledSeg>
+              <StyledRightDiv>
+                smaller grid render here
+              </StyledRightDiv>
+            </StyledSeg>
+      
+             
+            <StyledSeg>
             <Grid>
               <Grid.Row>
                 <Grid.Column relaxed columns={4}>
@@ -86,6 +103,7 @@ class Videos extends React.Component {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            </StyledSeg>
           </Container>
         <AddVideo/>
         </Page>
@@ -93,13 +111,40 @@ class Videos extends React.Component {
   }
 }
 
+const StyledRightDiv = styled.div`
+  width: 100%;
+  float: right;
+  padding: 1em 1em 1em 2em;
+
+`;
+
+const StyledLeftDiv = styled.div`
+  width: 50%;
+  float: left;
+  padding: 1em 1em 1em 1em;
+`;
+const StyledBottomDiv = styled.div`
+  float: bottom;
+`;
+
+
+const StyledSeg = styled(Segment)`
+   border-radius: 1px ;
+   border: 2px ;
+   display: inline-block;
+   background-color: transparent ;
+   padding: 1em ;
+   font-size: 1em ;
+   box-shadow: none ;
+   margin:1em auto ;
+ `;
 const CardStyles = styled(Card)`
   height: 200px;
   width: 180px;
 `
 
 const CardGroup = styled(Card.Group)`
-  padding: 40px;
+  padding: 5px;
   display: flex;
   justify-content: center;
 `
