@@ -10,12 +10,18 @@ class Navbar extends React.Component {
     
     if (user) {
       return (
+        <>
+        <Link to='/MyFriends'>
+          <Menu.Item name='Friends List' active={this.props.location.pathname === "MyFriends"}>
+          </Menu.Item>
+        </Link>
         <Menu.Menu position='right'>
           <Menu.Item
             name='logout'
             onClick={ () => handleLogout(this.props.history) }
           />
         </Menu.Menu>
+        </>
       )
     } else {
       return (

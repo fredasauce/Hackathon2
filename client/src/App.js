@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { Switch, Route, } from 'react-router-dom';
 import { Container, } from "semantic-ui-react";
 import Comments from "./components/Comments";
+import MyFriends from './components/MyFriends'
 
 const App = () => (
   <>
@@ -17,6 +18,7 @@ const App = () => (
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/MyFriends" component={MyFriends} />
           <Route exact path="/comments" component={Comments} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
