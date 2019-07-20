@@ -4,7 +4,7 @@ import { Link, } from 'react-router-dom';
 import { Button, Container, Image, Icon, } from 'semantic-ui-react';
 
 class Video extends React.Component {
-  state = { item: {} }
+  state = { comments: [] }
 
   componentDidMount() {
     const { match: { params: { id, video_id } } } = this.props
@@ -25,33 +25,67 @@ class Video extends React.Component {
       })
   }
 
+  showVideos = () => {
+    return this.state.videos.map(v => (
+      <Link to={`/videos/${v.id}`}>
+        <div style={{ padding: '20px', border: '2px solid black' }}>
+          <CardStyles>
+            <Card.Header
+              style={{
+                fontSize: "20px",
+                height: '40px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              {v.name} This is video name
+            </Card.Header>
+            <Card.Content
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                }}>
+              <Image
+                style={{
+                  height: '120px',
+                  width: '160px',
+                }}
+                src={"https://loremflickr.com/400/400/commerce?" + Math.random()}
+                alt="Video" />
+            </Card.Content>
+           
+          </CardStyles>
+          <Comments id={v.id} />
+
+        </div>
+      </Link>
+    ))
+  }
+
   render() {
-    const { match: { params: { id, department_id } } } = this.props
-    const { name, description, price } = this.state.item
     return (
-      <Container style={{ marginBottom: '40px' }}>
-        <Link to={`/departments/${department_id}`}>
-          <Button color='black'>
-            <Icon name='arrow alternate circle left outline' />
-            Go Back
-            </Button>
-        </Link>
-        <h1>{name}</h1>
-        <Image src={"https://loremflickr.com/400/400/products?" + Math.random()} alt="Product" />
-        <h2>${price}</h2>
-        <h3>Product Description:</h3>
-        <p>{description}</p>
-        <Link to={`/departments/${department_id}/items/${id}/edit`}>
-          <Button inverted color="blue">
-            <Icon name='pencil' />
-            Update Video
-            </Button>
-        </Link>
-        <Button inverted color='red' onClick={this.handleDelete}>
-          <Icon name='trash' />
-          Delete Video
-        </Button>
-      </Container>
+        <Page>
+          <Container>
+            <ButtonStyle>
+              <Link to="/videos/new">
+                <Button color='CAEBF2'>
+                  <Icon name="add" />
+                  Add a Video
+                </Button>
+              </Link>
+            </ButtonStyle>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column relaxed columns={4}>
+                  <CardGroup>
+                    {this.showVideos()}
+                  </CardGroup>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </Page>
     )
   }
 }
