@@ -2,11 +2,12 @@ import React from "react";
 import { Container, Button, Card, Grid, Image, Icon, } from 'semantic-ui-react';
 import styled from "styled-components"
 import { Link } from 'react-router-dom';
+import Comments from "./Comments";
 
 import axios from "axios"
 
 class Videos extends React.Component {
-  state = { videos: [] }
+  state = { videos: [], }
 
   componentDidMount() {
     axios.get("/api/videos")
@@ -16,6 +17,8 @@ class Videos extends React.Component {
       .catch(err => {
         console.log(err.response)
       })
+
+     
   }
 
   showVideos = () => {
@@ -47,7 +50,10 @@ class Videos extends React.Component {
                 src={"https://loremflickr.com/400/400/commerce?" + Math.random()}
                 alt="Video" />
             </Card.Content>
+           
           </CardStyles>
+          <Comments id={v.id} />
+
         </div>
       </Link>
     ))
