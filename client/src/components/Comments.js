@@ -8,8 +8,8 @@ class Comments extends React.Component {
   state = { comments: [], showForm: false }
 
   componentDidMount() {
-    const { video_id } = this.props
-    axios.get(`/api/videos/${video_id}/comments`)
+    const { id } = this.props
+    axios.get(`/api/videos/${id}/comments`)
       .then(res => {
         this.setState({ comments: res.data })
       })
@@ -86,7 +86,7 @@ class Comments extends React.Component {
         <h1>C O M M E N T</h1>
         <Button color='teal' onClick={this.showForm}>
           <Icon name='comment alternate outline' />
-          Write a Comment
+          Comment
         </Button>
         {this.renderForm()}
         <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: '30px' }}>
